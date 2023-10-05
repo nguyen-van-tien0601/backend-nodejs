@@ -1,0 +1,26 @@
+{
+  "name": "backendzero",
+  "version": "1.0.0",
+  "description": "Hoc backend nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyen-van-tien0601/backend-nodejs.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "anhtien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyen-van-tien0601/backend-nodejs/issues"
+  },
+  "homepage": "https://github.com/nguyen-van-tien0601/backend-nodejs#readme",
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}
