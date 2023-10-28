@@ -18,11 +18,7 @@ tools {
 }
   }
 
-	stage('Checkout') {
-            steps {
-                sh 'wget "https://github.com/SonarSource/sonar-scanning-examples/tree/master/sonarqube-scanner" '
-            }
-        }
+
         stage ('SAST') {
       steps {
       withSonarQubeEnv('sonar') {
