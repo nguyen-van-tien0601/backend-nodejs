@@ -36,7 +36,6 @@ tools {
 	         sh 'sudo apt-get install wget apt-transport-https gnupg lsb-release '
 		sh 'wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -'
 		sh 'echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list'
-		sh 'sudo apt-get update'
 	        sh 'sudo apt-get install trivy'
 		sh 'trivy fs django.nV-master'
 			}
