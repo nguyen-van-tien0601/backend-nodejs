@@ -9,6 +9,17 @@ tools {
         sh 'echo "PATH = ${PATH}"'
 }
 }
+stage('Build') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
+    stage('Unit Tests') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+  }
 
 	  	stage ('check-Secret') {
 	    steps {
