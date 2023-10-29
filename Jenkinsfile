@@ -28,6 +28,35 @@ tools {
 	sh 'cat target/sonar/report-task.txt'
       }
     }}
+	          stage('Install Trivy') {
+            steps {
+                sh 'sudo apt update'
+                sh 'sudo apt install wget'
+                sh 'wget https://github.com/aquasecurity/trivy/releases/download/v0.19.1/trivy_0.19.1_Linux-64bit.tar.gz'
+                sh 'tar zxvf trivy_0.19.1_Linux-64bit.tar.gz'
+                sh 'sudo mv trivy /usr/local/bin/'
+            }
+        }
+	          stage('Build Docker Image') {
+            steps {
+                // Replace with your Docker build steps
+                sh 'docker build -t my-docker-image:latest .'
+            }
+        }
+
+        stage('Scan Docker Image with Trivy') {
+            steps {
+                script {
+                    def imageName = 'my-docker-image:latest'
+                    def trivyCmd = "trivy --severity HIGH --ignore-unfixed ${imageName}"
+                    def trivyScan = sh(script: trivyCmd, returnStatus: true)
+                    if (trivyScan != 0) {
+                        currentBuild.result = 'FAILURE'
+                        error "Trivy found vulnerabilities"
+                    }
+                }
+	    }
+	}
 
 	      stage ('Source-Composition-Analysis'){
 		steps{
