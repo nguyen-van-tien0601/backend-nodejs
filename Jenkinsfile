@@ -19,7 +19,7 @@ stage('Build') {
         sh 'mvn test'
       }
     }
-  }
+  
 
 	  	stage ('check-Secret') {
 	    steps {
