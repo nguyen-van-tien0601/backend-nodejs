@@ -9,16 +9,7 @@ tools {
         sh 'echo "PATH = ${PATH}"'
 }
 }
-stage('Build') {
-      steps {
-        sh 'mvn clean package'
-      }
-    }
-    stage('Unit Tests') {
-      steps {
-        sh 'mvn test'
-      }
-    }
+
   
 
 	  	stage ('check-Secret') {
@@ -37,6 +28,16 @@ stage('Build') {
 	sh 'cat target/sonar/report-task.txt'
       }
     }}
+	  stage('Build') {
+      steps {
+        sh 'mvn clean package'
+      }
+    }
+    stage('Unit Tests') {
+      steps {
+        sh 'mvn test'
+      }
+    }
 	      stage ('Source-Composition-Analysis'){
 		steps{
 	         sh 'wget "https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.2/dependency-check-8.4.2-release.zip" '
